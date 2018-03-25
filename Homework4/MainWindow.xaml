@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:Homework4"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBlock Grid.Row ="0" Grid.Column="0">Zip Code</TextBlock>
+        <TextBox x:Name="uxTexBox" Grid.Row ="0" Grid.Column="2" TextChanged="uxTexBox_TextChanged"></TextBox>
+        <Button x:Name="uxButton" 
+                Click="Button_Loaded"
+                IsEnabled="False">Submit</Button>
+    </StackPanel>
 </Window>

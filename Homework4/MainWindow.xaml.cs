@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+
 
 namespace Homework4
 {
@@ -22,7 +24,33 @@ namespace Homework4
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+
+        private void Button_Loaded(object sender, RoutedEventArgs e)
+        {            
+            if (!isZipCode(uxTexBox.Text))
+            {
+                uxTexBox.Text = "";
+            }
+            MessageBox.Show("Ok!");
+        }
+
+        private void uxTexBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            uxButton.IsEnabled = (isZipCode(uxTexBox.Text));
+            
+        }
+        private bool isZipCode(string text)
+        {
+            var usZipRegEx = @"^\d{5}(?:[-\s]\d{4})?$";
+            var caZipRegEx = @"^([A-Z]\d[A-Z])\ {0,1}(\d[A-Z]\d)$";
+
+            Regex regex = new Regex(usZipRegEx);
+            Regex regex1 = new Regex(caZipRegEx);
+            bool match = regex.IsMatch(text) || regex1.IsMatch(text);
+            return match;
         }
     }
 }
